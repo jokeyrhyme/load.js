@@ -1,4 +1,4 @@
-# loadjs (ex requirejs)
+# loadJS (ex-RequireJS)
 
 simple script loader based on extracted logic from RequireJS
 
