@@ -2,6 +2,9 @@
 
 simple script loader based on extracted logic from RequireJS
 
+[![browser support](https://ci.testling.com/jokeyrhyme/loadjs-ex-requirejs.png)
+](https://ci.testling.com/jokeyrhyme/loadjs-ex-requirejs)
+
 ## Why?
 
 [loadJS](https://github.com/filamentgroup/loadJS) inspired me, but I needed

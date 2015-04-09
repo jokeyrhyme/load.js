@@ -4,7 +4,8 @@
   "description": "simple script loader based on extracted logic from RequireJS",
   "main": "loadjs.js",
   "scripts": {
-    "test": "$(npm bin)/gulp"
+    "pretest": "gulp",
+    "test": "tape tests/index.js"
   },
   "repository": "https://github.com/jokeyrhyme/loadjs-ex-requirejs",
   "author": "",
@@ -18,7 +19,6 @@
     "babelify": "^6.0.2",
     "browserify": "^9.0.7",
     "gulp": "^3.8.11",
-    "tap-browser-color": "^0.1.2",
     "tape": "^4.0.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
@@ -34,6 +34,19 @@
           ]
         }
       ]
+    ]
+  },
+  "testling": {
+    "files": "tests/index.js",
+    "browsers": [
+      "ie/6..latest",
+      "chrome/30..latest",
+      "firefox/20..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6",
+      "ipad/6",
+      "android-browser/latest"
     ]
   }
 }

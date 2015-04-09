@@ -10,7 +10,6 @@ if (typeof global !== 'undefined') {
     global.console = require('console');
   }
 }
-var undo = require('tap-browser-color');
 var test = require('tape');
 
 // our modules
@@ -22,6 +21,11 @@ var loadjs = require('../loadjs');
 test('loadjs', function (t) {
   t.ok(loadjs, 'loadjs module');
   t.ok(typeof loadjs === 'function', 'exports a function');
+
+  if (!process.browser) {
+    t.end();
+    return;
+  }
 
   t.test('helloworld.js', function (tt) {
     loadjs('helloworld.js', function (err, event) {
@@ -58,5 +62,3 @@ test('loadjs', function (t) {
 
   t.end();
 });
-
-undo();
