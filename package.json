@@ -2,10 +2,38 @@
   "name": "loadjs-ex-requirejs",
   "version": "0.0.1",
   "description": "simple script loader based on extracted logic from RequireJS",
-  "main": "index.js",
+  "main": "loadjs.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "$(npm bin)/gulp"
   },
+  "repository": "https://github.com/jokeyrhyme/loadjs-ex-requirejs",
   "author": "",
-  "license": "BSD-3-Clause"
+  "license": "BSD-3-Clause",
+  "keywords": [
+    "loadjs",
+    "script",
+    "loader"
+  ],
+  "devDependencies": {
+    "babelify": "^6.0.2",
+    "browserify": "^9.0.7",
+    "gulp": "^3.8.11",
+    "tap-browser-color": "^0.1.2",
+    "tape": "^4.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "optional": [
+            "es3.memberExpressionLiterals",
+            "es3.propertyLiterals"
+          ]
+        }
+      ]
+    ]
+  }
 }
