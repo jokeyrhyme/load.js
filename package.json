@@ -43,17 +43,10 @@
       ]
     ]
   },
-  "testling": {
-    "files": "tests/index.js",
-    "browsers": [
-      "ie/6..latest",
-      "chrome/30..latest",
-      "firefox/20..latest",
-      "safari/latest",
-      "opera/11.0..latest",
-      "iphone/6",
-      "ipad/6",
-      "android-browser/latest"
-    ]
-  }
+  "files": [
+    "dist/index.js",
+    "index.js",
+    "LICENSE.txt",
+    "README.md"
+  ]
 }
