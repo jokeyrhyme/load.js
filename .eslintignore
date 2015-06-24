@@ -4,3 +4,6 @@ node_modules
 # output / temporary files
 coverage
 dist
+
+# explicitly bad syntax
+tests/badsyntax.js

@@ -5,7 +5,7 @@
   "main": "loadjs.js",
   "scripts": {
     "pretest": "gulp",
-    "test": "tape tests/index.js"
+    "test": "eslint . && tape tests/index.js"
   },
   "repository": {
     "type": "git",
@@ -16,11 +16,15 @@
   "keywords": [
     "loadjs",
     "script",
-    "loader"
+    "loader",
+    "requirejs"
   ],
   "devDependencies": {
     "babelify": "^6.0",
     "browserify": "^10.2",
+    "eslint": "^0.23.0",
+    "eslint-config-semistandard": "^4.0",
+    "eslint-config-standard": "^3.3",
     "gulp": "^3.8",
     "tape": "^4.0",
     "vinyl-buffer": "^1.0",
