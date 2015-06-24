@@ -1,6 +1,6 @@
 {
-  "name": "loadjs-ex-requirejs",
-  "version": "0.0.1",
+  "name": "@jokeyrhyme/load",
+  "version": "1.0.0",
   "description": "simple script loader based on extracted logic from RequireJS",
   "main": "loadjs.js",
   "scripts": {
