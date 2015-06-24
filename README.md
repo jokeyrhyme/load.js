@@ -2,8 +2,8 @@
 
 simple script loader based on extracted logic from RequireJS
 
-[![browser support](https://ci.testling.com/jokeyrhyme/loadjs-ex-requirejs.png)
-](https://ci.testling.com/jokeyrhyme/loadjs-ex-requirejs)
+[![npm module](https://img.shields.io/npm/v/@jokeyrhyme/load.svg)](https://www.npmjs.com/package/@jokeyrhyme/load)
+[![travis-ci](https://img.shields.io/travis/jokeyrhyme/load.js.svg)](https://travis-ci.org/jokeyrhyme/load.js)
 
 ## Why?
 
