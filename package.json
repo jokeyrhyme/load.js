@@ -7,8 +7,11 @@
     "pretest": "gulp",
     "test": "tape tests/index.js"
   },
-  "repository": "https://github.com/jokeyrhyme/loadjs-ex-requirejs",
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jokeyrhyme/load.js.git"
+  },
+  "author": "Ron Waldon (https://github.com/jokeyrhyme)",
   "license": "BSD-3-Clause",
   "keywords": [
     "loadjs",
@@ -16,12 +19,12 @@
     "loader"
   ],
   "devDependencies": {
-    "babelify": "^6.0.2",
-    "browserify": "^9.0.7",
-    "gulp": "^3.8.11",
-    "tape": "^4.0.0",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "babelify": "^6.0",
+    "browserify": "^10.2",
+    "gulp": "^3.8",
+    "tape": "^4.0",
+    "vinyl-buffer": "^1.0",
+    "vinyl-source-stream": "^1.1"
   },
   "browserify": {
     "transform": [
