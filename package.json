@@ -44,8 +44,8 @@
     ]
   },
   "files": [
-    "dist/index.js",
-    "index.js",
+    "dist/loadjs.js",
+    "loadjs.js",
     "LICENSE.txt",
     "README.md"
   ]
