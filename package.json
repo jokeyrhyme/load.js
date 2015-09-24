@@ -17,6 +17,7 @@
     ]
   },
   "devDependencies": {
+    "@jokeyrhyme/eslint-config-es5": "^1.0.0",
     "babelify": "^6.3",
     "browserify": "^11.2",
     "eslint": "^1.5.1",
