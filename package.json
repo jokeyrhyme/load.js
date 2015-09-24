@@ -1,7 +1,7 @@
 {
   "name": "@jokeyrhyme/load",
   "description": "simple script loader based on extracted logic from RequireJS",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "Ron Waldon (https://github.com/jokeyrhyme)",
   "browserify": {
     "transform": [
