@@ -27,37 +27,61 @@ test('loadjs', function (t) {
     return;
   }
 
-  t.test('helloworld.js', function (tt) {
-    loadjs('helloworld.js', function (err, event) {
+  t.test('2x helloworld.js', function (tt) {
+    var url = 'helloworld.js';
+    var pending = 2;
+    var done = function (err, event) {
       tt.error(err);
       tt.ok(event, 'callback with event');
       tt.ok(document.body.innerHTML.indexOf('hello, world!') !== -1);
-      tt.end();
-    });
+      pending -= 1;
+      if (pending === 0) {
+        tt.end();
+      }
+    };
+    loadjs(url, done);
+    loadjs(url, done);
+    tt.equal(document.querySelectorAll('script[src="' + url + '"]').length, 1);
   });
 
-  t.test('missing.js', function (tt) {
-    loadjs('missing.js', function (err, event) {
+  t.test('2x missing.js', function (tt) {
+    var url = 'missing.js';
+    var pending = 2;
+    var done = function (err, event) {
       if (err) {
         tt.ok(err instanceof Error, 'callback with error');
       } else {
         tt.ok(true);
       }
       tt.ok(event, 'callback with event');
-      tt.end();
-    });
+      pending -= 1;
+      if (pending === 0) {
+        tt.end();
+      }
+    };
+    loadjs(url, done);
+    loadjs(url, done);
+    tt.equal(document.querySelectorAll('script[src="' + url + '"]').length, 1);
   });
 
-  t.test('badsyntax.js', function (tt) {
-    loadjs('badsyntax.js', function (err, event) {
+  t.test('2x badsyntax.js', function (tt) {
+    var url = 'badsyntax.js';
+    var pending = 2;
+    var done = function (err, event) {
       if (err) {
         tt.ok(err instanceof Error, 'callback with error');
       } else {
         tt.ok(true);
       }
       tt.ok(event, 'callback with event');
-      tt.end();
-    });
+      pending -= 1;
+      if (pending === 0) {
+        tt.end();
+      }
+    };
+    loadjs(url, done);
+    loadjs(url, done);
+    tt.equal(document.querySelectorAll('script[src="' + url + '"]').length, 1);
   });
 
   t.end();

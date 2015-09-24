@@ -23,6 +23,8 @@ var readyRegExp = isBrowser && navigator.platform === 'PLAYSTATION 3'
 // Oh the tragedy, detecting opera. See the usage of isOpera for reason.
 var isOpera = typeof opera !== 'undefined' && global.opera.toString() === '[object Opera]';
 
+var pendingUrls = {};
+
 function isFunction (it) {
   return ostring.call(it) === '[object Function]';
 }
@@ -78,16 +80,30 @@ function removeListener (node, func, name, ieName) {
 */
 function loadjs (url, callback) {
   var node;
-  var onScriptLoad, onScriptError;
+  var completeLoad, onScriptLoad, onScriptError;
 
-  var completeLoad = function (err, event) {
+  pendingUrls[url] = pendingUrls[url] || { callbacks: [] };
+  pendingUrls[url].callbacks.push(callback);
+
+  completeLoad = function (err, event) {
+    var cb;
     if (node) {
       removeListener(node, onScriptLoad, 'load', 'onreadystatechange');
       removeListener(node, onScriptError, 'error');
     }
-    if (callback && isFunction(callback)) {
-      callback(err, event);
+    while (pendingUrls[url].callbacks.length) {
+      cb = pendingUrls[url].callbacks.pop();
+      if (cb && isFunction(cb)) {
+        try {
+          cb(err, event);
+        } catch (cbError) {
+          if (global.console && global.console.error) {
+            global.console.error(cbError);
+          }
+        }
+      }
     }
+    delete pendingUrls[url];
   };
 
   onScriptLoad = function (evt) {
@@ -107,8 +123,13 @@ function loadjs (url, callback) {
   };
 
   if (isBrowser) {
+    if (pendingUrls[url].node) {
+      return node;
+    }
+
     // In the browser so use a script tag
     node = createNode();
+    pendingUrls[url].node = node;
 
     // Set up load listener. Test attachEvent first because IE9 has
     // a subtle issue in its addEventListener and script onload firings
