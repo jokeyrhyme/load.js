@@ -18,8 +18,8 @@ var isWebWorker = !isBrowser && typeof importScripts !== 'undefined';
 // specifically. Sequence is 'loading', 'loaded', execution,
 // then 'complete'. The UA check is unfortunate, but not sure how
 // to feature test w/o causing perf issues.
-var readyRegExp = isBrowser && navigator.platform === 'PLAYSTATION 3' ?
-/^complete$/ : /^(complete|loaded)$/;
+var readyRegExp = isBrowser && navigator.platform === 'PLAYSTATION 3'
+? /^complete$/ : /^(complete|loaded)$/;
 // Oh the tragedy, detecting opera. See the usage of isOpera for reason.
 var isOpera = typeof opera !== 'undefined' && global.opera.toString() === '[object Opera]';
 

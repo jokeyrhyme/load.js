@@ -1,35 +1,8 @@
 {
   "name": "@jokeyrhyme/load",
-  "version": "1.0.1",
   "description": "simple script loader based on extracted logic from RequireJS",
-  "main": "loadjs.js",
-  "scripts": {
-    "pretest": "gulp",
-    "test": "eslint . && tape tests/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jokeyrhyme/load.js.git"
-  },
+  "version": "1.0.1",
   "author": "Ron Waldon (https://github.com/jokeyrhyme)",
-  "license": "BSD-3-Clause",
-  "keywords": [
-    "loadjs",
-    "script",
-    "loader",
-    "requirejs"
-  ],
-  "devDependencies": {
-    "babelify": "^6.0",
-    "browserify": "^10.2",
-    "eslint": "^0.24.0",
-    "eslint-config-semistandard": "^4.0",
-    "eslint-config-standard": "^3.3",
-    "gulp": "^3.8",
-    "tape": "^4.0",
-    "vinyl-buffer": "^1.0",
-    "vinyl-source-stream": "^1.1"
-  },
   "browserify": {
     "transform": [
       [
@@ -43,10 +16,41 @@
       ]
     ]
   },
+  "devDependencies": {
+    "babelify": "^6.3",
+    "browserify": "^11.2",
+    "eslint": "^1.5.1",
+    "eslint-config-semistandard": "^5.0",
+    "eslint-config-standard": "^4.4",
+    "eslint-plugin-standard": "^1.3.1",
+    "fixpack": "^2.2.0",
+    "gulp": "^3.8",
+    "tape": "^4.2",
+    "vinyl-buffer": "^1.0",
+    "vinyl-source-stream": "^1.1"
+  },
   "files": [
     "dist/loadjs.js",
     "loadjs.js",
     "LICENSE.txt",
     "README.md"
-  ]
+  ],
+  "keywords": [
+    "loader",
+    "loadjs",
+    "requirejs",
+    "script"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "loadjs.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jokeyrhyme/load.js.git"
+  },
+  "scripts": {
+    "lint": "eslint . && fixpack",
+    "posttest": "npm run lint",
+    "pretest": "gulp",
+    "test": "tape tests/index.js"
+  }
 }

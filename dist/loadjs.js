@@ -138,9 +138,9 @@ function loadjs(url, callback) {
       // and then destroys all installs of IE 6-9.
       // node.attachEvent('onerror', onScriptError);
     } else {
-      node.addEventListener('load', onScriptLoad, false);
-      node.addEventListener('error', onScriptError, false);
-    }
+        node.addEventListener('load', onScriptLoad, false);
+        node.addEventListener('error', onScriptError, false);
+      }
     node.src = url;
 
     if (baseElement) {
