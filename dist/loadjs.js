@@ -86,7 +86,7 @@ function loadjs(url, callback) {
   pendingUrls[url] = pendingUrls[url] || { callbacks: [] };
   pendingUrls[url].callbacks.push(callback);
 
-  completeLoad = function (err, event) {
+  completeLoad = function completeLoad(err, event) {
     var cb;
     if (node) {
       removeListener(node, onScriptLoad, 'load', 'onreadystatechange');
@@ -107,7 +107,7 @@ function loadjs(url, callback) {
     delete pendingUrls[url];
   };
 
-  onScriptLoad = function (evt) {
+  onScriptLoad = function onScriptLoad(evt) {
     // Using currentTarget instead of target for Firefox 2.0's sake. Not
     // all old browsers will be supported, but this one was easy enough
     // to support and still makes sense.
@@ -116,7 +116,7 @@ function loadjs(url, callback) {
     }
   };
 
-  onScriptError = function (evt) {
+  onScriptError = function onScriptError(evt) {
     completeLoad(new Error('loadjs error: ' + url), evt);
   };
 
@@ -159,9 +159,9 @@ function loadjs(url, callback) {
       // and then destroys all installs of IE 6-9.
       // node.attachEvent('onerror', onScriptError);
     } else {
-        node.addEventListener('load', onScriptLoad, false);
-        node.addEventListener('error', onScriptError, false);
-      }
+      node.addEventListener('load', onScriptLoad, false);
+      node.addEventListener('error', onScriptError, false);
+    }
     node.src = url;
 
     if (baseElement) {

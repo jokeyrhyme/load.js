@@ -1,9 +1,7 @@
-# loadJS (ex-RequireJS)
+# loadJS (ex-RequireJS) [![npm module](https://img.shields.io/npm/v/@jokeyrhyme/load.svg)](https://www.npmjs.com/package/@jokeyrhyme/load) [![Travis CI Status](https://travis-ci.org/jokeyrhyme/load.js.svg?branch=master)](https://travis-ci.org/jokeyrhyme/load.js)
 
 simple script loader based on extracted logic from RequireJS
 
-[![npm module](https://img.shields.io/npm/v/@jokeyrhyme/load.svg)](https://www.npmjs.com/package/@jokeyrhyme/load)
-[![travis-ci](https://img.shields.io/travis/jokeyrhyme/load.js.svg)](https://travis-ci.org/jokeyrhyme/load.js)
 
 ## Why?
 
