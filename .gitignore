@@ -4,3 +4,5 @@ node_modules
 # output / temporary files
 coverage
 dist
+
+.eslintcache

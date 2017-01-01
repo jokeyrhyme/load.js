@@ -1,7 +1,0 @@
-{
-  "extends": "@jokeyrhyme/es5",
-  "env": {
-    "browser": true,
-    "node": true
-  }
-}

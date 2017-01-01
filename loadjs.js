@@ -4,39 +4,39 @@
 * @license Available via the MIT or new BSD license.
 */
 
-/*eslint-disable valid-jsdoc*/ // temporary
-/*global importScripts*/ // WebWorker
+/* eslint-disable valid-jsdoc */ // temporary
+/* global importScripts */ // WebWorker
 
-'use strict';
+'use strict'
 
-var head, baseElement;
-var op = Object.prototype;
-var ostring = op.toString;
-var isBrowser = !!(typeof window !== 'undefined' && global.navigator && global.document);
-var isWebWorker = !isBrowser && typeof importScripts !== 'undefined';
+var head, baseElement
+var op = Object.prototype
+var ostring = op.toString
+var isBrowser = !!(typeof window !== 'undefined' && global.navigator && global.document)
+var isWebWorker = !isBrowser && typeof importScripts !== 'undefined'
 // PS3 indicates loaded and complete, but need to wait for complete
 // specifically. Sequence is 'loading', 'loaded', execution,
 // then 'complete'. The UA check is unfortunate, but not sure how
 // to feature test w/o causing perf issues.
 var readyRegExp = isBrowser && navigator.platform === 'PLAYSTATION 3'
-? /^complete$/ : /^(complete|loaded)$/;
+? /^complete$/ : /^(complete|loaded)$/
 // Oh the tragedy, detecting opera. See the usage of isOpera for reason.
-var isOpera = typeof opera !== 'undefined' && global.opera.toString() === '[object Opera]';
+var isOpera = typeof opera !== 'undefined' && global.opera.toString() === '[object Opera]'
 
-var pendingUrls = {};
+var pendingUrls = {}
 
 function isFunction (it) {
-  return ostring.call(it) === '[object Function]';
+  return ostring.call(it) === '[object Function]'
 }
 
 if (isBrowser) {
-  head = document.getElementsByTagName('head')[0];
+  head = document.getElementsByTagName('head')[0]
   // If BASE tag is in play, using appendChild is a problem for IE6.
   // When that browser dies, this can be removed. Details in this jQuery bug:
   // http:// dev.jquery.com/ticket/2709
-  baseElement = document.getElementsByTagName('base')[0];
+  baseElement = document.getElementsByTagName('base')[0]
   if (baseElement) {
-    head = baseElement.parentNode;
+    head = baseElement.parentNode
   }
 }
 
@@ -47,11 +47,11 @@ function createNode () {
   // possibly support non-default namespace one day
   // var node = config.xhtml ?
   // document.createElementNS('http:// www.w3.org/1999/xhtml', 'html:script') :
-  var node = document.createElement('script');
-  node.type = 'text/javascript';
-  node.charset = 'utf-8';
-  node.async = true;
-  return node;
+  var node = document.createElement('script')
+  node.type = 'text/javascript'
+  node.charset = 'utf-8'
+  node.async = true
+  return node
 }
 
 function removeListener (node, func, name, ieName) {
@@ -62,10 +62,10 @@ function removeListener (node, func, name, ieName) {
     // Probably IE. If not it will throw an error, which will be
     // useful to know.
     if (ieName) {
-      node.detachEvent(ieName, func);
+      node.detachEvent(ieName, func)
     }
   } else {
-    node.removeEventListener(name, func, false);
+    node.removeEventListener(name, func, false)
   }
 }
 
@@ -79,32 +79,32 @@ function removeListener (node, func, name, ieName) {
 * @param {Object} url the URL to the module.
 */
 function loadjs (url, callback) {
-  var node;
-  var completeLoad, onScriptLoad, onScriptError;
+  var node
+  var completeLoad, onScriptLoad, onScriptError
 
-  pendingUrls[url] = pendingUrls[url] || { callbacks: [] };
-  pendingUrls[url].callbacks.push(callback);
+  pendingUrls[url] = pendingUrls[url] || { callbacks: [] }
+  pendingUrls[url].callbacks.push(callback)
 
   completeLoad = function (err, event) {
-    var cb;
+    var cb
     if (node) {
-      removeListener(node, onScriptLoad, 'load', 'onreadystatechange');
-      removeListener(node, onScriptError, 'error');
+      removeListener(node, onScriptLoad, 'load', 'onreadystatechange')
+      removeListener(node, onScriptError, 'error')
     }
     while (pendingUrls[url].callbacks.length) {
-      cb = pendingUrls[url].callbacks.pop();
+      cb = pendingUrls[url].callbacks.pop()
       if (cb && isFunction(cb)) {
         try {
-          cb(err, event);
+          cb(err, event)
         } catch (cbError) {
           if (global.console && global.console.error) {
-            global.console.error(cbError);
+            global.console.error(cbError)
           }
         }
       }
     }
-    delete pendingUrls[url];
-  };
+    delete pendingUrls[url]
+  }
 
   onScriptLoad = function (evt) {
     // Using currentTarget instead of target for Firefox 2.0's sake. Not
@@ -114,22 +114,22 @@ function loadjs (url, callback) {
       evt.type === 'load' ||
       readyRegExp.test((evt.currentTarget || evt.srcElement).readyState)
     ) {
-      completeLoad(null, evt);
+      completeLoad(null, evt)
     }
-  };
+  }
 
   onScriptError = function (evt) {
-    completeLoad(new Error('loadjs error: ' + url), evt);
-  };
+    completeLoad(new Error('loadjs error: ' + url), evt)
+  }
 
   if (isBrowser) {
     if (pendingUrls[url].node) {
-      return node;
+      return node
     }
 
     // In the browser so use a script tag
-    node = createNode();
-    pendingUrls[url].node = node;
+    node = createNode()
+    pendingUrls[url].node = node
 
     // Set up load listener. Test attachEvent first because IE9 has
     // a subtle issue in its addEventListener and script onload firings
@@ -151,7 +151,7 @@ function loadjs (url, callback) {
       !(node.attachEvent.toString && node.attachEvent.toString().indexOf('[native code') < 0) &&
       !isOpera
     ) {
-      node.attachEvent('onreadystatechange', onScriptLoad);
+      node.attachEvent('onreadystatechange', onScriptLoad)
       // It would be great to add an error handler here to catch
       // 404s in IE9+. However, onreadystatechange will fire before
       // the error handler, so that does not help. If addEventListener
@@ -164,18 +164,18 @@ function loadjs (url, callback) {
       // and then destroys all installs of IE 6-9.
       // node.attachEvent('onerror', onScriptError);
     } else {
-      node.addEventListener('load', onScriptLoad, false);
-      node.addEventListener('error', onScriptError, false);
+      node.addEventListener('load', onScriptLoad, false)
+      node.addEventListener('error', onScriptError, false)
     }
-    node.src = url;
+    node.src = url
 
     if (baseElement) {
-      head.insertBefore(node, baseElement);
+      head.insertBefore(node, baseElement)
     } else {
-      head.appendChild(node);
+      head.appendChild(node)
     }
 
-    return node;
+    return node
   }
   if (isWebWorker) {
     try {
@@ -185,14 +185,14 @@ function loadjs (url, callback) {
       // are in play, the expectation that a build has been done so that
       // only one script needs to be loaded anyway. This may need to be
       // reevaluated if other use cases become common.
-      importScripts(url);
+      importScripts(url)
 
       // Account for anonymous modules
-      completeLoad(null);
+      completeLoad(null)
     } catch (e) {
-      completeLoad(new Error('loadjs error: ' + url), null);
+      completeLoad(new Error('loadjs error: ' + url), null)
     }
   }
 }
 
-module.exports = loadjs;
+module.exports = loadjs
