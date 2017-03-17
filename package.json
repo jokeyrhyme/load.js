@@ -36,7 +36,7 @@
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
     "fixpack": "^2.2.0",
-    "flow-bin": "^0.41.0",
+    "flow-bin": "^0.42.0",
     "gulp": "^3.8",
     "tape": "^4.2",
     "vinyl-buffer": "^1.0",
