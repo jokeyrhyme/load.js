@@ -6,8 +6,8 @@
 * @license Available via the MIT or new BSD license.
 */
 
-/*eslint-disable valid-jsdoc*/ // temporary
-/*global importScripts*/ // WebWorker
+/* eslint-disable valid-jsdoc */ // temporary
+/* global importScripts */ // WebWorker
 
 'use strict';
 

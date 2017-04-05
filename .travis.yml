@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - '6'
+  - '7'
 before_script:
   - 'export DISPLAY=:99.0'
   - sh -e /etc/init.d/xvfb start
@@ -16,7 +17,5 @@ addons:
       - g++-4.8
 install:
   - npm install --global npm
-  - npm install --global flow-typed
-  - npm install --global typings
   - npm install --global yarn
   - npm install
