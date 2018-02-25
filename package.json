@@ -40,7 +40,7 @@
     "gulp": "^3.8",
     "tape": "^4.2",
     "vinyl-buffer": "^1.0",
-    "vinyl-source-stream": "^1.1"
+    "vinyl-source-stream": "^2.0.0"
   },
   "directories": {
     "test": "tests"
